@@ -669,18 +669,7 @@ namespace UoFiddler.Controls.UserControls
             string fileName = Path.Combine(Options.OutputPath, "tiledata.mul");
             TileData.SaveTileData(fileName);
 
-            using (var dialog = new SavedFileDialog("Saved", "TileData saved successfully.", fileName))
-            {
-                Form owner = FindForm();
-                if (owner != null)
-                {
-                    dialog.ShowDialog(owner);
-                }
-                else
-                {
-                    dialog.ShowDialog();
-                }
-            }
+            FileSavedDialog.Show(FindForm(), fileName, "TileData saved successfully.");
 
             Options.ChangedUltimaClass["TileData"] = false;
         }
