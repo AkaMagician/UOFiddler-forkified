@@ -10,12 +10,15 @@ namespace UoFiddler.Controls.Forms
     {
         private readonly string _filePath;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FileSavedDialog"/> class.
+        /// </summary>
         public FileSavedDialog(string filePath, string message = null, string title = null)
         {
             InitializeComponent();
 
             _filePath = filePath ?? throw new ArgumentNullException(nameof(filePath));
-            statusLabel.Text = string.IsNullOrWhiteSpace(message) ? "File saved successfully." : message;
+            statusLabel.Text = message ?? "File saved successfully.";
             pathLabel.Text = _filePath;
 
             if (!string.IsNullOrWhiteSpace(title))
@@ -26,6 +29,9 @@ namespace UoFiddler.Controls.Forms
             iconPictureBox.Image = SystemIcons.Information.ToBitmap();
         }
 
+        /// <summary>
+        /// Shows the dialog with the specified owner.
+        /// </summary>
         public static void Show(IWin32Window owner, string filePath, string message = null, string title = null)
         {
             using (var dialog = new FileSavedDialog(filePath, message, title))
@@ -34,6 +40,9 @@ namespace UoFiddler.Controls.Forms
             }
         }
 
+        /// <summary>
+        /// Shows the dialog without specifying an owner.
+        /// </summary>
         public static void Show(string filePath, string message = null, string title = null)
         {
             using (var dialog = new FileSavedDialog(filePath, message, title))

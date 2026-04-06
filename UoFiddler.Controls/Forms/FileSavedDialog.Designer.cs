@@ -57,7 +57,7 @@ namespace UoFiddler.Controls.Forms
             this.mainLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
             this.mainLayoutPanel.Name = "mainLayoutPanel";
             this.mainLayoutPanel.RowCount = 1;
-            this.mainLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.mainLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.mainLayoutPanel.Size = new System.Drawing.Size(560, 86);
             this.mainLayoutPanel.TabIndex = 0;
             // 
@@ -95,7 +95,7 @@ namespace UoFiddler.Controls.Forms
             // 
             this.statusLabel.AutoSize = true;
             this.statusLabel.Location = new System.Drawing.Point(0, 0);
-            this.statusLabel.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            this.statusLabel.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(130, 15);
             this.statusLabel.TabIndex = 0;
@@ -110,15 +110,17 @@ namespace UoFiddler.Controls.Forms
             this.pathLabel.Name = "pathLabel";
             this.pathLabel.Size = new System.Drawing.Size(148, 15);
             this.pathLabel.TabIndex = 1;
-            this.pathLabel.Text = "C:\\Path\\To\\Saved\\File.ext";
+            this.pathLabel.Text = "";
             this.pathLabel.UseMnemonic = false;
             // 
             // buttonsPanel
             // 
             this.buttonsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonsPanel.AutoSize = true;
+            this.buttonsPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.buttonsPanel.ColumnCount = 2;
-            this.buttonsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 128F));
-            this.buttonsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 128F));
+            this.buttonsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.buttonsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.buttonsPanel.Controls.Add(this.buttonOpenFolder, 0, 0);
             this.buttonsPanel.Controls.Add(this.buttonOk, 1, 0);
             this.buttonsPanel.Location = new System.Drawing.Point(260, 48);
@@ -154,6 +156,7 @@ namespace UoFiddler.Controls.Forms
             // FileSavedDialog
             // 
             this.AcceptButton = this.buttonOk;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
