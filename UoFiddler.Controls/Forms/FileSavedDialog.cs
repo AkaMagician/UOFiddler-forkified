@@ -1,14 +1,3 @@
-/***************************************************************************
- *
- * $Author: Turley
- *
- * "THE BEER-WARE LICENSE"
- * As long as you retain this notice you can do whatever you want with
- * this stuff. If we meet some day, and you think this stuff is worth it,
- * you can buy me a beer in return.
- *
- ***************************************************************************/
-
 using System;
 using System.Diagnostics;
 using System.Drawing;
@@ -25,10 +14,14 @@ namespace UoFiddler.Controls.Forms
         {
             InitializeComponent();
 
-            _filePath = filePath ?? string.Empty;
+            _filePath = filePath ?? throw new ArgumentNullException(nameof(filePath));
             statusLabel.Text = string.IsNullOrWhiteSpace(message) ? "File saved successfully." : message;
             pathLabel.Text = _filePath;
-            Text = string.IsNullOrWhiteSpace(title) ? "Saved" : title;
+
+            if (!string.IsNullOrWhiteSpace(title))
+            {
+                Text = title;
+            }
 
             iconPictureBox.Image = SystemIcons.Information.ToBitmap();
         }
@@ -37,20 +30,16 @@ namespace UoFiddler.Controls.Forms
         {
             using (var dialog = new FileSavedDialog(filePath, message, title))
             {
-                if (owner != null)
-                {
-                    dialog.ShowDialog(owner);
-                }
-                else
-                {
-                    dialog.ShowDialog();
-                }
+                dialog.ShowDialog(owner);
             }
         }
 
         public static void Show(string filePath, string message = null, string title = null)
         {
-            Show(null, filePath, message, title);
+            using (var dialog = new FileSavedDialog(filePath, message, title))
+            {
+                dialog.ShowDialog();
+            }
         }
 
         private void OnOpenFolderClick(object sender, EventArgs e)
@@ -58,7 +47,7 @@ namespace UoFiddler.Controls.Forms
             try
             {
                 string folderPath = Path.GetDirectoryName(_filePath);
-                if (!string.IsNullOrEmpty(folderPath))
+                if (!string.IsNullOrEmpty(folderPath) && Directory.Exists(folderPath))
                 {
                     Process.Start(new ProcessStartInfo
                     {
@@ -69,7 +58,7 @@ namespace UoFiddler.Controls.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, $"Failed to open folder.\n{ex.Message}", "Error", MessageBoxButtons.OK,
+                MessageBox.Show(this, $"Unable to open folder: {ex.Message}", "Error", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
         }

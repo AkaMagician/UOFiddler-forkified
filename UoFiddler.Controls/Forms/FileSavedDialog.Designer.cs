@@ -13,10 +13,9 @@ namespace UoFiddler.Controls.Forms
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
+            if (disposing && (components != null))
             {
-                iconPictureBox.Image?.Dispose();
-                components?.Dispose();
+                components.Dispose();
             }
 
             base.Dispose(disposing);
@@ -35,7 +34,7 @@ namespace UoFiddler.Controls.Forms
             this.contentLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.statusLabel = new System.Windows.Forms.Label();
             this.pathLabel = new System.Windows.Forms.Label();
-            this.buttonsPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.buttonsPanel = new System.Windows.Forms.TableLayoutPanel();
             this.buttonOpenFolder = new System.Windows.Forms.Button();
             this.buttonOk = new System.Windows.Forms.Button();
             this.mainLayoutPanel.SuspendLayout();
@@ -117,13 +116,18 @@ namespace UoFiddler.Controls.Forms
             // buttonsPanel
             // 
             this.buttonsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonsPanel.AutoSize = true;
+            this.buttonsPanel.ColumnCount = 2;
+            this.buttonsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 128F));
+            this.buttonsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 128F));
+            this.buttonsPanel.Controls.Add(this.buttonOpenFolder, 0, 0);
+            this.buttonsPanel.Controls.Add(this.buttonOk, 1, 0);
             this.buttonsPanel.Location = new System.Drawing.Point(260, 48);
             this.buttonsPanel.Margin = new System.Windows.Forms.Padding(0);
             this.buttonsPanel.Name = "buttonsPanel";
+            this.buttonsPanel.RowCount = 1;
+            this.buttonsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.buttonsPanel.Size = new System.Drawing.Size(256, 36);
             this.buttonsPanel.TabIndex = 2;
-            this.buttonsPanel.WrapContents = false;
             // 
             // buttonOpenFolder
             // 
@@ -164,8 +168,6 @@ namespace UoFiddler.Controls.Forms
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Saved";
-            this.buttonsPanel.Controls.Add(this.buttonOpenFolder);
-            this.buttonsPanel.Controls.Add(this.buttonOk);
             this.mainLayoutPanel.ResumeLayout(false);
             this.mainLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox)).EndInit();
@@ -184,7 +186,7 @@ namespace UoFiddler.Controls.Forms
         private System.Windows.Forms.TableLayoutPanel contentLayoutPanel;
         private System.Windows.Forms.Label statusLabel;
         private System.Windows.Forms.Label pathLabel;
-        private System.Windows.Forms.FlowLayoutPanel buttonsPanel;
+        private System.Windows.Forms.TableLayoutPanel buttonsPanel;
         private System.Windows.Forms.Button buttonOpenFolder;
         private System.Windows.Forms.Button buttonOk;
     }
