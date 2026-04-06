@@ -62,6 +62,12 @@
 		<Compile Update="Forms\ProgressBarDialog.Designer.cs">
 			<DependentUpon>ProgressBarDialog.cs</DependentUpon>
 		</Compile>
+		<Compile Update="Forms\FileSavedDialog.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="Forms\FileSavedDialog.Designer.cs">
+			<DependentUpon>FileSavedDialog.cs</DependentUpon>
+		</Compile>
 		<Compile Update="UserControls\SkillGroupControl.cs">
 			<SubType>UserControl</SubType>
 		</Compile>
